@@ -1153,15 +1153,14 @@
 <script src="assets/js/jquery-ui.js"></script>
 <script src="assets/js/element-in-view.js"></script>
 <script src="assets/js/script.js"></script>
+<script src="config.js"></script>
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 
 <script>
   const { createClient } = supabase;
-  const supabaseUrl = 'https://veifodsnuidfipamqadz.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlaWZvZHNudWlkZmlwYW1xYWR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MTA0MDMsImV4cCI6MjA3NzM4NjQwM30.E2KeM-hKYqR3dhC2KpWqnFekSM0A5mb3B3DSZ_7y-S4';
-  const _supabase = createClient(supabaseUrl, supabaseKey);
+  const _supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
   // Get the modal
   var modal = document.getElementById("beta-modal");

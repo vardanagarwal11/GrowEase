@@ -25,6 +25,170 @@
 
 <div class="page-wrapper">
 	
+	<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+}
+
+/* Modal box */
+.modal-content {
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--color-seven-rgb, 23, 18, 29), 1) 0%,
+    rgba(var(--color-two-rgb, 30, 24, 38), 0.95) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  margin: 10% auto;
+  padding: 40px 30px;
+  text-align: center;
+  color: var(--white-color, #fff);
+  box-shadow: 0 0 30px rgba(var(--main-color-rgb, 118, 31, 227), 0.35);
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+/* Entrance animation */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.close:hover { color: var(--main-color); }
+
+/* Heading + subtext */
+.modal-content h2 {
+  color: var(--main-color, #761FE3);
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.modal-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+
+/* Inputs */
+#email-input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0 18px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+#email-input:focus {
+  border-color: var(--main-color);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Join button */
+#join-beta-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(to right, var(--main-color), var(--color-five, #D093E8));
+  transition: all 0.4s ease;
+  box-shadow: 0 0 12px rgba(var(--main-color-rgb, 118, 31, 227), 0.4);
+}
+#join-beta-btn:hover {
+  background: linear-gradient(to right, var(--color-five, #D093E8), var(--main-color));
+  box-shadow: 0 0 25px rgba(var(--main-color-rgb, 118, 31, 227), 0.6);
+}
+
+/* Thank-you popup */
+#thank-you-message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: linear-gradient(
+    to right,
+    var(--main-color),
+    var(--color-five, #D093E8)
+  );
+  color: var(--white-color);
+  padding: 25px 35px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  z-index: 1100;
+  box-shadow: 0 0 25px rgba(var(--main-color-rgb, 118, 31, 227), 0.5);
+  animation: popupFade 0.35s ease forwards;
+}
+
+/* FIXED: Pop directly from center (no sliding) */
+@keyframes popupFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="beta-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Join the GrowEase Beta</h2>
+<p>Be among the first to experience GrowEase. Enter your email to secure early access.</p>
+    <input type="email" id="email-input" placeholder="Enter your email">
+    <a id="join-beta-btn" class="template-btn btn-style-one">
+				<span class="btn-wrap">
+				<span class="text-one">Join Beta</span>
+				<span class="text-two">Join Beta</span>
+				</span>
+	</a>
+  </div>
+</div>
+
+<div id="thank-you-message">
+🎉 Thanks for joining the GrowEase Beta! You’re officially on our early-access list.<br>Keep an eye on your inbox, we’ll send your invite soon.</div>
+
+<div class="page-wrapper">
+	
 	<!-- Cursor -->
 	<div class="cursor"></div>
 	<div class="cursor-follower"></div>
@@ -100,16 +264,10 @@
 
 							<!-- Button Box -->
 							<div class="main-header_buttons">
-								<a href="login.html" class="template-btn btn-style-two">
+								<a id="login-btn" class="template-btn btn-style-one">
 									<span class="btn-wrap">
-										<span class="text-one">Login</span>
-										<span class="text-two">Login</span>
-									</span>
-								</a>
-								<a href="register.html" class="template-btn btn-style-one">
-									<span class="btn-wrap">
-										<span class="text-one">Join GrowEase</span>
-										<span class="text-two">Join GrowEase</span>
+										<span class="text-one">Join GrowEase Beta</span>
+										<span class="text-two">Join GrowEase Beta</span>
 									</span>
 								</a>
 							</div>
@@ -227,27 +385,6 @@
 				<div class="widgets-section">
 					<div class="row clearfix">
 						
-						<!-- Big Column -->
-						<div class="big-column col-lg-5 col-md-12 col-sm-12">
-							<div class="footer-newsletter">
-								<h5 class="footer-title">Newsletter</h5>
-								<div class="footer-newsletter_text">Lorem ipsum dolor sit amet consectetur adipiscing vitae mattis tellus. Nullam quis mattis.</div>
-								<div class="newsletter-box">
-									<form method="post" action="contact.html">
-										<div class="form-group">
-											<span class="icon fa-regular fa-envelope fa-fw"></span>
-											<input type="email" name="search-field" value="" placeholder="Enter your mail" required>
-											<button type="submit" class="template-btn btn-style-one">
-												<span class="btn-wrap">
-													<span class="text-one">Subscribe</span>
-													<span class="text-two">Subscribe</span>
-												</span>
-											</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
 
 						<!-- Big Column -->
 						<div class="big-column col-lg-7 col-md-12 col-sm-12">
@@ -301,7 +438,7 @@
 			<div class="auto-container">
 				<div class="inner-container d-flex justify-content-between align-items-center flex-wrap">
 					<div class="footer-logo"><a href="index.html"><img src="assets/images/logo.svg" alt="" title=""></a></div>
-					<div class="footer-copyright">&copy; 2024 <a href="index.html">Braine.</a> All rights reserved.</div>
+                <div class="footer-copyright">&copy; 2025 <a href="index.html">GrowEase</a>. All rights reserved.</div>
 					<!-- Social Box -->
 					<div class="footer-social_box">
 						<a href="https://facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
@@ -349,6 +486,8 @@
 <script src="assets/js/jquery-ui.js"></script>
 <script src="assets/js/element-in-view.js"></script>
 <script src="assets/js/script.js"></script>
+<script src="config.js"></script>
+<script src="assets/js/joinbeta.js"></script>
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->

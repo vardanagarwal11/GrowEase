@@ -1,2 +1,2 @@
-export const SUPABASE_URL = 'https://veifodsnuidfipamqadz.supabase.co';
-export const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlaWZvZHNudWlkZmlwYW1xYWR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MTA0MDMsImV4cCI6MjA3NzM4NjQwM30.E2KeM-hKYqR3dhC2KpWqnFekSM0A5mb3B3DSZ_7y-S4';
+const SUPABASE_URL = 'https://veifodsnuidfipamqadz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlaWZvZHNudWlkZmlwYW1xYWR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MTA0MDMsImV4cCI6MjA3NzM4NjQwM30.E2KeM-hKYqR3dhC2KpWqnFekSM0A5mb3B3DSZ_7y-S4';

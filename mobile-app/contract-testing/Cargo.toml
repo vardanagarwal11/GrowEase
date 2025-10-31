@@ -1,0 +1,33 @@
+[package]
+name = "concordium-smart-contract-testing"
+version = "4.4.0"
+edition = "2021"
+rust-version = "1.73"
+license = "MPL-2.0"
+readme = "README.md"
+description = "A companion crate to `concordium-std` that supports off-chain end-to-end testing of smart contracts."
+homepage = "https://github.com/Concordium/concordium-rust-smart-contracts"
+repository = "https://github.com/Concordium/concordium-rust-smart-contracts"
+exclude = ["tests"]                                                                                                  # Do not publish tests.
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+concordium-rust-sdk = { version = "6", path = "../concordium-rust-sdk" }
+tokio = { version = "1.28", features = ["rt-multi-thread", "time"] }
+sha2 = "0.10"
+anyhow = "1"
+# Pinned to version `1.6.0`, since otherwise rust version `1.73` would refuse to build.
+base64ct = "=1.6.0"
+thiserror = "1.0"
+num-bigint = "0.4"
+num-integer = "0.1"
+
+# Pin versions to be compatible with 1.73. Remove pins when MSRV is pumped
+rayon = ">=1.0, <1.11"
+rayon-core = ">=1.0, <1.13"
+serde_with = ">=3.0, <3.13"
+ed25519-dalek = ">=2.0, <2.2.0"
+
+[dev-dependencies]
+rand = "0.8"
